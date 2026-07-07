@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #071F44; }
+    * { box-sizing: border-box; }
+    ::selection { background: #7DDCFF; color: #071F44; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes floaty { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
+    @keyframes blink { 0%, 60% { opacity: 1; } 61%, 100% { opacity: 0; } }
+  </style>
+</helmet>
+
+<div style="min-height:100vh; background:{{ bg }}; color:#FFF9EC; font-family:'Bricolage Grotesque', sans-serif; overflow-x:hidden; cursor:none;">
+
+  <!-- Custom cursor: comet trail -->
+  <div ref="{{ cursorLayerRef }}" style="position:fixed; top:0; left:0; width:0; height:0; pointer-events:none; z-index:9999;"></div>
+
+  <!-- Nav -->
+  <nav style="display:flex; justify-content:space-between; align-items:center; padding:24px 5vw; position:relative; z-index:5;">
+    <a href="#top" style="font-weight:800; font-size:20px; color:#FFF9EC; text-decoration:none; display:flex; align-items:center; gap:10px;">
+      <span style="display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:{{ accent }}; color:#071F44; font-family:'JetBrains Mono', monospace; font-size:14px; font-weight:700;">A</span>
+      aman.cloud
+    </a>
+    <div style="display:flex; gap:8px; font-family:'JetBrains Mono', monospace; font-size:12px;">
+      <a href="#work" style="color:#FFF9EC; text-decoration:none; padding:7px 14px; border:1.5px solid rgba(255,249,236,0.3); border-radius:999px;" style-hover="background:#326CE5; border-color:#326CE5;">work</a>
+      <a href="#stack" style="color:#FFF9EC; text-decoration:none; padding:7px 14px; border:1.5px solid rgba(255,249,236,0.3); border-radius:999px;" style-hover="background:#326CE5; border-color:#326CE5;">stack</a>
+      <a href="https://github.com/aman-sharma-TW" target="_blank" style="color:#FFF9EC; text-decoration:none; padding:7px 14px; border:1.5px solid rgba(255,249,236,0.3); border-radius:999px;" style-hover="background:#326CE5; border-color:#326CE5;">github ↗</a>
+      <a href="Aman_Sharma_CV.pdf" download="Aman_Sharma_CV.pdf" style="color:#071F44; background:#7DDCFF; text-decoration:none; padding:7px 14px; border:1.5px solid #7DDCFF; border-radius:999px; font-weight:700;" style-hover="background:#FFF9EC; border-color:#FFF9EC;">download CV ↓</a>
+      <a href="#contact" style="color:#071F44; background:{{ accent }}; text-decoration:none; padding:7px 14px; border:1.5px solid {{ accent }}; border-radius:999px; font-weight:700;" style-hover="background:#7DDCFF; border-color:#7DDCFF;">say hi →</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="top" style="padding:8vh 5vw 6vh; text-align:center; position:relative;">
+    <div style="font-family:'JetBrains Mono', monospace; font-size:14px; color:#FFD23F; margin-bottom:24px;">~/aman-sharma $ whoami<span style="animation:blink 1.2s infinite;">▊</span></div>
+    <h1 style="font-size:clamp(44px, 7.5vw, 108px); font-weight:800; line-height:0.95; margin:0; letter-spacing:-0.03em; text-wrap:balance;">
+      I keep the <span style="color:{{ accent }};">cloud</span><br>from falling down.
+    </h1>
+    <p style="font-size:clamp(16px, 1.6vw, 19px); max-width:52ch; margin:32px auto 0; line-height:1.6; color:rgba(255,249,236,0.85);">
+      Hi, I'm <strong>Aman Sharma</strong> — Senior DevOps Engineer with 8+ years building secure, cost-optimized platforms on Azure &amp; AWS. Kubernetes wrangler, Terraform whisperer, zero-downtime enthusiast.
+    </p>
+    <div style="display:flex; gap:12px; justify-content:center; margin-top:40px; flex-wrap:wrap;">
+      <span style="animation:floaty 5s ease-in-out infinite; display:inline-block; background:#326CE5; color:#FFF9EC; font-weight:700; padding:10px 20px; border-radius:999px; font-size:15px; transform:rotate(-2deg);">☸ Kubernetes</span>
+      <span style="animation:floaty 6s ease-in-out infinite; animation-delay:0.5s; display:inline-block; background:#50A8FF; color:#071F44; font-weight:700; padding:10px 20px; border-radius:999px; font-size:15px;">Azure ⛅</span>
+      <span style="animation:floaty 5.5s ease-in-out infinite; animation-delay:1s; display:inline-block; background:#7DDCFF; color:#071F44; font-weight:700; padding:10px 20px; border-radius:999px; font-size:15px; transform:rotate(2deg);">Terraform 🛠</span>
+      <span style="animation:floaty 6.5s ease-in-out infinite; animation-delay:1.5s; display:inline-block; background:#FFF9EC; color:#071F44; font-weight:700; padding:10px 20px; border-radius:999px; font-size:15px;">CI/CD ∞</span>
+    </div>
+  </header>
+
+  <!-- Marquee -->
+  <div style="border-top:2px solid rgba(255,249,236,0.15); border-bottom:2px solid rgba(255,249,236,0.15); padding:18px 0; overflow:hidden; white-space:nowrap;">
+    <div style="display:inline-flex; gap:48px; animation:marquee 28s linear infinite; font-family:'JetBrains Mono', monospace; font-size:15px; color:rgba(255,249,236,0.7);">
+      <span>AKS</span><span>✦</span><span>Terraform</span><span>✦</span><span>GitHub Actions</span><span>✦</span><span>ArgoCD</span><span>✦</span><span>Helm</span><span>✦</span><span>KEDA</span><span>✦</span><span>DevSecOps</span><span>✦</span><span>SOC2</span><span>✦</span><span>Splunk</span><span>✦</span><span>Dynatrace</span><span>✦</span><span>Python</span><span>✦</span><span>Bash</span><span>✦</span><span>AKS</span><span>✦</span><span>Terraform</span><span>✦</span><span>GitHub Actions</span><span>✦</span><span>ArgoCD</span><span>✦</span><span>Helm</span><span>✦</span><span>KEDA</span><span>✦</span><span>DevSecOps</span><span>✦</span><span>SOC2</span><span>✦</span><span>Splunk</span><span>✦</span><span>Dynatrace</span><span>✦</span><span>Python</span><span>✦</span><span>Bash</span><span>✦</span>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <section style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; padding:8vh 5vw; max-width:1200px; margin:0 auto;">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+      <div data-reveal="" style="background:rgba(255,249,236,0.06); border:2px solid rgba(255,249,236,0.15); border-radius:24px; padding:32px 24px; text-align:center; transition:all 0.25s;" style-hover="border-color:{{ accent }}; transform:translateY(-4px);">
+        <div style="font-size:clamp(36px, 4vw, 56px); font-weight:800; color:{{ accent }};">{{ s.num }}</div>
+        <div style="font-family:'JetBrains Mono', monospace; font-size:13px; color:rgba(255,249,236,0.7); margin-top:8px;">{{ s.label }}</div>
+      </div>
+    </sc-for>
+  </section>
+
+  <!-- Work -->
+  <section id="work" style="padding:4vh 5vw 8vh; max-width:1000px; margin:0 auto;">
+    <h2 data-reveal="" style="font-size:clamp(36px, 5vw, 64px); font-weight:800; margin:0 0 48px; letter-spacing:-0.02em;">The journey so far <span style="color:{{ accent }};">↓</span></h2>
+    <div style="display:flex; flex-direction:column;">
+      <sc-for list="{{ jobs }}" as="j" hint-placeholder-count="4">
+        <div data-reveal="" style="display:grid; grid-template-columns:150px 32px 1fr; gap:0 20px; align-items:start;">
+          <div style="display:flex; flex-direction:column; gap:8px; padding-top:2px;">
+            <span style="font-family:'JetBrains Mono', monospace; font-size:12px; color:rgba(255,249,236,0.6); white-space:nowrap;">{{ j.period }}</span>
+            <sc-if value="{{ j.current }}" hint-placeholder-val="{{ false }}">
+              <span style="font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; background:#7DF9AA; color:#071F44; padding:3px 10px; border-radius:999px; align-self:flex-start;">CURRENT</span>
+            </sc-if>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; align-self:stretch;">
+            <span style="width:12px; height:12px; border-radius:50%; background:{{ j.dot }}; border:2px solid {{ j.dot }}; flex-shrink:0; margin-top:5px;"></span>
+            <span style="width:2px; flex:1; background:rgba(255,249,236,0.15);"></span>
+          </div>
+          <div style="padding-bottom:48px;">
+            <div style="font-size:20px; font-weight:800; line-height:1.2;">{{ j.role }}</div>
+            <div style="font-family:'JetBrains Mono', monospace; font-size:13px; color:{{ accent }}; margin-top:6px;">{{ j.company }}</div>
+            <p style="margin:12px 0 0; line-height:1.6; font-size:15px; max-width:64ch; color:rgba(255,249,236,0.85);">{{ j.blurb }}</p>
+            <div style="display:flex; flex-direction:column; gap:6px; margin-top:12px;">
+              <sc-for list="{{ j.points }}" as="pt" hint-placeholder-count="2">
+                <div style="display:flex; gap:10px; font-size:14px; line-height:1.55; color:rgba(255,249,236,0.75);">
+                  <span style="color:{{ accent }};">▸</span>
+                  <span>{{ pt }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;">
+              <sc-for list="{{ j.tags }}" as="t" hint-placeholder-count="3">
+                <span style="font-family:'JetBrains Mono', monospace; font-size:11px; border:1px solid rgba(255,249,236,0.25); color:rgba(255,249,236,0.8); padding:4px 12px; border-radius:999px;">{{ t }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Stack -->
+  <section id="stack" style="padding:0 5vw 10vh; max-width:1200px; margin:0 auto;">
+    <h2 data-reveal="" style="font-size:clamp(36px, 5vw, 64px); font-weight:800; margin:0 0 40px; letter-spacing:-0.02em;">Toolbox <span style="color:#7DDCFF;">⚙</span></h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
+      <sc-for list="{{ stack }}" as="g" hint-placeholder-count="6">
+        <div data-reveal="" style="border:2px solid rgba(255,249,236,0.15); border-radius:24px; padding:28px; transition:all 0.25s;" style-hover="border-color:{{ accent }}; transform:translateY(-4px) rotate(-0.4deg);">
+          <div style="font-family:'JetBrains Mono', monospace; font-size:13px; color:{{ accent }}; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">{{ g.cat }}</div>
+          <div style="margin-top:12px; line-height:1.7; font-size:16px; color:rgba(255,249,236,0.9); font-weight:500;">{{ g.items }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certs" style="padding:0 5vw 12vh; max-width:1200px; margin:0 auto;">
+    <h2 data-reveal="" style="font-size:clamp(36px, 5vw, 64px); font-weight:800; margin:0 0 40px; letter-spacing:-0.02em;">Certifications <span style="color:#7DDCFF;">✓</span></h2>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <sc-for list="{{ certs }}" as="c" hint-placeholder-count="5">
+        <div data-reveal="" style="display:flex; justify-content:space-between; align-items:center; gap:16px; border:2px solid rgba(255,249,236,0.15); border-radius:18px; padding:20px 28px; transition:all 0.25s;" style-hover="border-color:rgba(255,249,236,0.4); transform:translateX(6px);">
+          <span style="font-size:16px; font-weight:600;">{{ c.name }}</span>
+          <span style="font-family:'JetBrains Mono', monospace; font-size:11px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:5px 14px; border-radius:999px; background:{{ c.badgeBg }}; color:{{ c.badgeColor }}; white-space:nowrap;">{{ c.status }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <footer id="contact" style="background:#FFF9EC; color:#071F44; border-radius:48px 48px 0 0; padding:12vh 5vw 8vh; text-align:center;">
+    <div data-reveal="" style="font-family:'JetBrains Mono', monospace; font-size:14px; color:#326CE5; font-weight:700;">STATUS: OPEN TO RELOCATION — NL · CH · SE · FI 🇪🇺</div>
+    <h2 style="font-size:clamp(36px, 5vw, 72px); font-weight:800; margin:20px 0 0; letter-spacing:-0.03em; line-height:1;">Let's ship something<br>that never goes down.</h2>
+    <div style="display:flex; gap:14px; justify-content:center; margin-top:44px; flex-wrap:wrap;">
+      <a href="mailto:amansharma.cloud@gmail.com" style="background:#071F44; color:#FFF9EC; text-decoration:none; font-weight:700; font-size:16px; padding:15px 30px; border-radius:999px;" style-hover="background:{{ accent }}; color:#071F44;">amansharma.cloud@gmail.com</a>
+      <a href="Aman_Sharma_CV.pdf" download="Aman_Sharma_CV.pdf" style="border:2px solid #071F44; color:#071F44; text-decoration:none; font-weight:700; font-size:16px; padding:13px 30px; border-radius:999px;" style-hover="background:#7DDCFF; border-color:#7DDCFF;">Download CV ↓</a>
+      <a href="https://linkedin.com/in/aman-sharma-b0997a88" target="_blank" style="border:2px solid #071F44; color:#071F44; text-decoration:none; font-weight:700; font-size:16px; padding:13px 30px; border-radius:999px;" style-hover="background:#7DDCFF; border-color:#7DDCFF;">LinkedIn ↗</a>
+      <a href="https://github.com/aman-sharma-TW" target="_blank" style="border:2px solid #071F44; color:#071F44; text-decoration:none; font-weight:700; font-size:16px; padding:13px 30px; border-radius:999px;" style-hover="background:#7DDCFF; border-color:#7DDCFF;">GitHub ↗</a>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:10px; align-items:center; margin-top:72px; font-family:'JetBrains Mono', monospace;">
+      <div style="font-size:14px; color:#071F44; font-weight:700;">◎ Pune, Maharashtra, India</div>
+      <div style="font-size:15px; letter-spacing:0.25em; color:#326CE5; font-weight:700;">18.5204° N, 73.8567° E</div>
+      <div style="font-size:13px; color:rgba(27,10,107,0.5); margin-top:8px;">© 2026 Aman Sharma · Built with too much YAML</div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: {},
+  &quot;bg&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#071F44&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#071F44&quot;, &quot;#0A2A5E&quot;, &quot;#1B0A6B&quot;, &quot;#101223&quot;], &quot;section&quot;: &quot;Theme&quot; },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;color&quot;, &quot;default&quot;: &quot;#50A8FF&quot;, &quot;tsType&quot;: &quot;string&quot;, &quot;options&quot;: [&quot;#50A8FF&quot;, &quot;#326CE5&quot;, &quot;#7DDCFF&quot;, &quot;#FF6B57&quot;], &quot;section&quot;: &quot;Theme&quot; }
+}">
+class Component extends DCLogic {
+  cursorLayerRef = React.createRef();
+
+  componentDidMount() {
+    const layer = this.cursorLayerRef.current;
+    if (!layer) return;
+    const COLORS = ['#FFF9EC', '#50A8FF', '#326CE5', '#7DDCFF', '#B9C2FF'];
+    const N = 14;
+
+    // head: a little rounded arrow/dot that wobbles
+    const head = document.createElement('div');
+    head.style.cssText = 'position:fixed; top:0; left:0; width:16px; height:16px; border-radius:50% 50% 50% 4px; background:#FFF9EC; box-shadow:0 0 12px rgba(255,249,236,0.6); transform:translate(-100px,-100px);';
+    layer.appendChild(head);
+
+    // trail dots (snake)
+    const dots = [];
+    for (let i = 0; i < N; i++) {
+      const d = document.createElement('div');
+      const size = 12 - i * 0.7;
+      d.style.cssText = 'position:fixed; top:0; left:0; width:' + size + 'px; height:' + size + 'px; border-radius:50%; background:' + COLORS[i % COLORS.length] + '; opacity:' + (0.85 - i * 0.055) + '; transform:translate(-100px,-100px);';
+      layer.appendChild(d);
+      dots.push({ el: d, x: -100, y: -100, size: size });
+    }
+
+    let mx = -100, my = -100, hx = -100, hy = -100, t = 0;
+    this._onMove = (e) => { mx = e.clientX; my = e.clientY; };
+
+    // click: confetti burst
+    this._onDown = (e) => {
+      for (let i = 0; i < 10; i++) {
+        const p = document.createElement('div');
+        const c = COLORS[Math.floor(Math.random() * COLORS.length)];
+        const s = 5 + Math.random() * 6;
+        p.style.cssText = 'position:fixed; top:0; left:0; width:' + s + 'px; height:' + s + 'px; border-radius:' + (Math.random() > 0.5 ? '50%' : '2px') + '; background:' + c + '; transform:translate(' + e.clientX + 'px,' + e.clientY + 'px); transition:transform 0.65s cubic-bezier(0.1,0.8,0.3,1), opacity 0.65s;';
+        layer.appendChild(p);
+        const ang = Math.random() * Math.PI * 2;
+        const dist = 40 + Math.random() * 70;
+        requestAnimationFrame(() => {
+          p.style.transform = 'translate(' + (e.clientX + Math.cos(ang) * dist) + 'px,' + (e.clientY + Math.sin(ang) * dist - 20) + 'px) rotate(' + (Math.random() * 360) + 'deg)';
+          p.style.opacity = '0';
+        });
+        setTimeout(() => p.remove(), 700);
+      }
+    };
+
+    window.addEventListener('mousemove', this._onMove);
+    window.addEventListener('mousedown', this._onDown);
+
+    const tick = () => {
+      t += 0.15;
+      hx += (mx - hx) * 0.35;
+      hy += (my - hy) * 0.35;
+      const wob = Math.sin(t) * 1.5;
+      const overLink = document.elementFromPoint && (() => { const el = document.elementFromPoint(mx, my); return el && el.closest && !!el.closest('a, button'); })();
+      head.style.transform = 'translate(' + (hx - 8) + 'px,' + (hy - 8 + wob) + 'px) scale(' + (overLink ? 1.8 : 1) + ')';
+      head.style.background = overLink ? '#FFD23F' : '#FFF9EC';
+      let px = hx, py = hy;
+      for (const d of dots) {
+        d.x += (px - d.x) * 0.32;
+        d.y += (py - d.y) * 0.32;
+        d.el.style.transform = 'translate(' + (d.x - d.size / 2) + 'px,' + (d.y - d.size / 2) + 'px)';
+        px = d.x; py = d.y;
+      }
+      this._raf = requestAnimationFrame(tick);
+    };
+    this._raf = requestAnimationFrame(tick);
+
+    // Scroll-reveal: subtle fade-up on everything marked data-reveal
+    setTimeout(() => {
+      const els = document.querySelectorAll('[data-reveal]');
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            const el = en.target;
+            const siblings = Array.from(el.parentElement.children).filter(c => c.hasAttribute && c.hasAttribute('data-reveal'));
+            const idx = Math.max(0, siblings.indexOf(el));
+            el.style.transitionDelay = (idx * 70) + 'ms';
+            el.style.opacity = '1';
+            el.style.translate = '0 0';
+            setTimeout(() => { el.style.transitionDelay = '0ms'; }, idx * 70 + 650);
+            this._io.unobserve(el);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach((el) => {
+        el.style.opacity = '0';
+        el.style.translate = '0 24px';
+        const prev = el.style.transition;
+        el.style.transition = (prev ? prev + ', ' : '') + 'opacity 0.6s ease, translate 0.6s ease';
+        this._io.observe(el);
+      });
+    }, 100);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mousemove', this._onMove);
+    window.removeEventListener('mousedown', this._onDown);
+    cancelAnimationFrame(this._raf);
+    if (this._io) this._io.disconnect();
+  }
+
+  renderVals() {
+    return {
+      cursorLayerRef: this.cursorLayerRef,
+      bg: this.props.bg ?? '#071F44',
+      accent: this.props.accent ?? '#50A8FF',
+      stats: [
+        { num: '8+', label: 'years in DevOps' },
+        { num: '70%', label: 'cost cut with AI tooling' },
+        { num: '5+', label: 'enterprise clients on Azure' },
+        { num: '0', label: 'downtime in AKS migration' }
+      ],
+      jobs: [
+        {
+          role: 'Senior Infrastructure Consultant', company: 'Thoughtworks', period: '2022 — Present', current: true, dot: '#7DDCFF',
+          blurb: 'Architecting Azure cloud infrastructure for 5+ enterprise clients — platform engineering, GitOps, and DevSecOps at scale.',
+          points: [
+            'Zero-downtime AKS migration from VMSS with zone redundancy and cost right-sizing',
+            'KEDA event-driven autoscaling for Spark workloads on AKS',
+            'CI/CD estate modernization: GoCD → GitHub Actions, GitLab → GitHub',
+            'SOC2 audit readiness; Wiz, XRay, and GitGuardian across the platform',
+            'AI-built engineering dashboards that cut costs 70% (~$1,500/month saved)'
+          ],
+          tags: ['AKS', 'Terraform', 'ArgoCD', 'KEDA', 'GitHub Actions']
+        },
+        {
+          role: 'DevOps Analyst', company: 'Deloitte // Banking & Financial Sector', period: '2021 — 2022', current: false, dot: '#50A8FF',
+          blurb: 'Built a full AWS Account GitOps model for finance & investment management environments.',
+          points: [
+            'End-to-end AWS IaC pipeline with Terraform, Jenkins, and GitHub',
+            'Reusable Terraform modules with feature toggles',
+            'SonarQube + IaC security scanning across all delivery workflows'
+          ],
+          tags: ['AWS', 'Terraform', 'Jenkins', 'DevSecOps']
+        },
+        {
+          role: 'Infra DevOps Engineer', company: 'MavenWave (Atos) // Banking & Financial Services', period: '2021', current: false, dot: '#326CE5',
+          blurb: 'Multi-cloud infrastructure across AWS and GCP with Terraform Enterprise, workspace-based separation.',
+          points: [
+            'Spot Award for exceptional client value delivery',
+            'Bitbucket administration, branching strategy, and PR governance'
+          ],
+          tags: ['AWS', 'GCP', 'Terraform Enterprise']
+        },
+        {
+          role: 'DevOps Engineer', company: 'Wipro // US Retail Banking', period: '2018 — 2020', current: false, dot: '#B9C2FF',
+          blurb: 'On-prem → AWS migration for one of the largest US retail banks.',
+          points: [
+            'Multi-tier app migration with Terraform, CloudFormation, and Jenkins',
+            'VPC design: subnets, NAT/IGW, bastion hosts, ASGs, load balancers'
+          ],
+          tags: ['AWS', 'CloudFormation', 'Jenkins']
+        }
+      ],
+      certs: [
+        { name: 'AWS Certified Cloud Practitioner', status: 'Expired', badgeBg: 'rgba(255,249,236,0.12)', badgeColor: 'rgba(255,249,236,0.55)' },
+        { name: 'AWS Certified Solutions Architect — Associate', status: 'Expired', badgeBg: 'rgba(255,249,236,0.12)', badgeColor: 'rgba(255,249,236,0.55)' },
+        { name: 'AWS Certified DevOps Engineer — Professional', status: 'Expired', badgeBg: 'rgba(255,249,236,0.12)', badgeColor: 'rgba(255,249,236,0.55)' },
+        { name: 'Microsoft Azure: Fundamentals (AZ-900)', status: 'Valid', badgeBg: '#7DF9AA', badgeColor: '#1B0A6B' },
+        { name: 'Certified Kubernetes Administrator (CKA)', status: 'In progress', badgeBg: '#FFD23F', badgeColor: '#1B0A6B' }
+      ],
+      stack: [
+        { cat: 'Cloud', items: 'Azure (AKS, VMSS, Key Vault, Functions, Monitor) · AWS' },
+        { cat: 'IaC & GitOps', items: 'Terraform · Ansible · Helm · ArgoCD' },
+        { cat: 'CI/CD', items: 'GitHub Actions · Azure DevOps · Jenkins · GoCD · JFrog' },
+        { cat: 'Security', items: 'DevSecOps · SonarQube · Wiz · GitGuardian · XRay · SOC2' },
+        { cat: 'Observability', items: 'Azure Monitor · Dynatrace · Splunk' },
+        { cat: 'Scripting & OS', items: 'Python · Bash · Linux (RHEL, Ubuntu)' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
