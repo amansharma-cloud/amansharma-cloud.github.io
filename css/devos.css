@@ -1,0 +1,83 @@
+/* DevOS extras: boot screen, launcher, windows, terminal, games, experience section */
+:root {
+  --dv-bg: #071F44; --dv-ink: #FFF9EC; --dv-accent: #50A8FF; --dv-cyan: #7DDCFF;
+  --dv-yellow: #FFD23F; --dv-green: #7DF9AA; --dv-panel: #0b2a5a; --dv-line: rgba(255,249,236,.18);
+  --dv-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+.dv-hidden { display: none !important; }
+
+/* Boot */
+#dv-boot { position: fixed; inset: 0; z-index: 10000; background: #030d1f; color: var(--dv-green);
+  font-family: var(--dv-mono); font-size: 14px; display: flex; flex-direction: column; justify-content: center;
+  padding: 6vw; cursor: pointer; transition: opacity .5s; }
+#dv-boot.dv-out { opacity: 0; pointer-events: none; }
+#dv-boot pre { margin: 0; white-space: pre-wrap; line-height: 1.7; }
+#dv-boot .dv-title { color: var(--dv-ink); font-size: 22px; font-weight: 700; margin-bottom: 18px; }
+#dv-boot .dv-prompt { margin-top: 24px; color: var(--dv-yellow); animation: dvblink 1.2s infinite; }
+#dv-boot .dv-skip { position: absolute; top: 20px; right: 24px; color: rgba(255,249,236,.6); font-size: 12px; }
+@keyframes dvblink { 0%,60% { opacity: 1 } 61%,100% { opacity: .2 } }
+
+/* Launcher dock */
+#dv-dock { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 9000; display: flex; gap: 8px;
+  padding: 8px 10px; background: rgba(7,31,68,.85); backdrop-filter: blur(10px); border: 1.5px solid var(--dv-line);
+  border-radius: 18px; font-family: var(--dv-mono); }
+#dv-dock button { background: transparent; border: 0; color: var(--dv-ink); font: inherit; font-size: 12px; cursor: pointer;
+  padding: 8px 12px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+#dv-dock button:hover, #dv-dock button:focus-visible { background: #326CE5; outline: none; }
+#dv-dock .dv-ico { font-size: 20px; line-height: 1; }
+
+/* Windows */
+.dv-win { position: fixed; z-index: 9100; min-width: 320px; max-width: 96vw; max-height: 86vh; display: flex; flex-direction: column;
+  background: var(--dv-panel); color: var(--dv-ink); border: 1.5px solid var(--dv-line); border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5); font-family: var(--dv-mono); font-size: 13px; overflow: hidden; }
+.dv-bar { display: flex; align-items: center; gap: 8px; padding: 9px 12px; background: #06183a; cursor: grab; user-select: none; touch-action: none; }
+.dv-bar:active { cursor: grabbing; }
+.dv-dot { width: 12px; height: 12px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; }
+.dv-dot.close { background: #ff5f57; } .dv-dot.min { background: #febc2e; }
+.dv-wtitle { flex: 1; text-align: center; font-size: 12px; color: rgba(255,249,236,.7); margin-right: 40px; }
+.dv-body { padding: 14px; overflow: auto; flex: 1; }
+.dv-win.dv-min .dv-body { display: none; }
+.dv-win, .dv-win * { cursor: auto; }
+.dv-win button, .dv-win .dv-bar, .dv-win .dv-dot { cursor: pointer; }
+
+/* Terminal */
+.dv-term { background: #030d1f; color: var(--dv-green); height: 340px; width: min(640px, 92vw); padding: 12px; overflow: auto; line-height: 1.55; }
+.dv-term .dv-line { white-space: pre-wrap; word-break: break-word; }
+.dv-term .dv-cmd { color: var(--dv-ink); } .dv-term .dv-err { color: #ff8a80; } .dv-term a { color: var(--dv-cyan); }
+.dv-term .dv-row { display: flex; gap: 8px; }
+.dv-term input { flex: 1; background: transparent; border: 0; outline: none; color: var(--dv-ink); font: inherit; caret-color: var(--dv-yellow); }
+
+/* Experience section */
+#dv-exp { padding: 4vh 5vw 12vh; max-width: 1000px; margin: 0 auto; color: var(--dv-ink); font-family: 'Bricolage Grotesque', sans-serif; }
+#dv-exp h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 800; margin: 0 0 32px; letter-spacing: -.02em; }
+#dv-exp h2 span { color: var(--dv-cyan); }
+.dv-timer { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-bottom: 40px; }
+.dv-tcell { border: 2px solid var(--dv-line); border-radius: 18px; padding: 16px 6px; text-align: center; background: rgba(255,249,236,.05); }
+.dv-tcell b { display: block; font-size: clamp(22px, 3.4vw, 40px); color: var(--dv-accent); font-weight: 800; font-variant-numeric: tabular-nums; }
+.dv-tcell small { font-family: var(--dv-mono); font-size: 11px; color: rgba(255,249,236,.65); }
+.dv-skill { margin-bottom: 14px; font-family: var(--dv-mono); font-size: 13px; }
+.dv-skill-head { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.dv-track { height: 10px; border-radius: 999px; background: rgba(255,249,236,.12); overflow: hidden; }
+.dv-fill { height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, #326CE5, var(--dv-cyan)); transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+
+/* Games */
+.dv-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.dv-tabs button, .dv-btn { background: #326CE5; color: var(--dv-ink); border: 0; border-radius: 8px; padding: 6px 12px; font: inherit; font-size: 12px; }
+.dv-tabs button.on { background: var(--dv-yellow); color: #071F44; font-weight: 700; }
+.dv-game { width: min(420px, 86vw); min-height: 300px; }
+.dv-mines { display: grid; gap: 2px; margin-top: 10px; width: max-content; max-width: 100%; }
+.dv-cell { width: 28px; height: 28px; border: 0; border-radius: 4px; background: #1c4b94; color: var(--dv-ink); font: 700 13px var(--dv-mono); padding: 0; }
+.dv-cell.open { background: #06183a; } .dv-cell.bomb { background: #ff5f57; }
+.dv-quiz-opt { display: block; width: 100%; text-align: left; margin: 6px 0; background: #123a7a; color: var(--dv-ink); border: 1.5px solid var(--dv-line); border-radius: 8px; padding: 9px 12px; font: inherit; }
+.dv-quiz-opt:hover { border-color: var(--dv-accent); } .dv-quiz-opt.ok { background: #1f7a4a; } .dv-quiz-opt.bad { background: #8a2b2b; }
+.dv-pods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; }
+.dv-pod { height: 74px; border-radius: 12px; border: 1.5px dashed var(--dv-line); background: #06183a; font-size: 30px; color: inherit; }
+.dv-pod.up { background: #326CE5; border-style: solid; }
+
+@media (max-width: 700px) {
+  .dv-win { left: 8px !important; right: 8px; top: 8px !important; width: auto; max-height: calc(100vh - 90px); }
+  .dv-term, .dv-game { width: auto; }
+  .dv-timer { grid-template-columns: repeat(3, 1fr); }
+  #dv-dock button { padding: 6px 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .dv-fill, #dv-boot { transition: none; } #dv-boot .dv-prompt { animation: none; } }
